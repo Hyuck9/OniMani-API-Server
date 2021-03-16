@@ -1,1 +1,38 @@
+server:
+  port: 8080
 
+spring:
+  profiles:
+    active: local
+
+  datasource:
+    url: jdbc:mariadb://192.168.0.92:3306/onimaniapi
+    username: onimaniuser
+    password: nex147200
+    driver-class-name: org.mariadb.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+      naming:
+        physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
+        implicit-strategy: org.springframework.boot.orm.jpa.hibernate.SpringImplicitNamingStrategy
+
+    properties:
+      hibernate:
+#        show_sql: true
+        format_sql: true
+        default_batch_fetch_size: 100
+        use_sql_comments: true
+
+  data:
+    web:
+      pageable:
+        default-page-size: 10
+        max-page-size: 2000
+
+logging:
+  level:
+    root: warn
+    org.hibernate.SQL: debug
+    kr.co.nexmore.onimani: debug
