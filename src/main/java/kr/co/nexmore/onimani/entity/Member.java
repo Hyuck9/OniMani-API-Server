@@ -36,10 +36,8 @@ public class Member extends BaseTimeEntity {
     @Embedded
     private Location location;
 
-    @OneToOne(mappedBy = "member")
-    private MemberFriend memberFriend;
 
-    @OneToMany(mappedBy = "friend")
+    @OneToMany(mappedBy = "friend", cascade = CascadeType.ALL)
     private List<MemberFriend> friends = new ArrayList<>();
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL)

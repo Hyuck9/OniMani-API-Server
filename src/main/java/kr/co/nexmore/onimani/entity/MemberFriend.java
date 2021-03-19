@@ -1,5 +1,6 @@
 package kr.co.nexmore.onimani.entity;
 
+import kr.co.nexmore.onimani.entity.base.BaseTimeEntity;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -8,13 +9,13 @@ import static javax.persistence.FetchType.LAZY;
 
 @Entity
 @Getter
-public class MemberFriend {
+public class MemberFriend extends BaseTimeEntity {
 
     @Id @GeneratedValue
     @Column(name = "member_friend_id")
     private Long id;
 
-    @OneToOne
+    @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
     private Member member;
 
@@ -29,4 +30,5 @@ public class MemberFriend {
         memberFriend.friend = friend;
         return memberFriend;
     }
+
 }
